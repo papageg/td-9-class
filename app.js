@@ -9,7 +9,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static('public'));
 
 function asyncHandler(cb){
-  return async (req,res,next) = {
+  return async (req,res,next) => {
     try {
       await cb(req,res,next);
     } catch(err){
@@ -63,8 +63,10 @@ function getUsers(){
 //     });
 // }); 
 
+  //Async/Await
   app.get('/', asyncHandler(async (req,res) => {
     const users = await getUsers();
+    // throw new Error("Broken")
     res.render('index', {title: "Users", users: users.users});   
   })); 
 
